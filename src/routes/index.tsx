@@ -1,5 +1,5 @@
-import { useMemo, useState, type ReactNode } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { createFileRoute, Link, useRouterState } from "@tanstack/react-router";
 import {
   Apple,
   ArrowRight,
@@ -74,6 +74,10 @@ const CAT_ICONS: Record<CategoryId, typeof Apple> = {
 type CardVersion = "v1" | "v2" | "v3" | "v4";
 
 function Index() {
+  return <HomePage />;
+}
+
+export function HomePage({ square = false }: { square?: boolean }) {
   const [filter, setFilter] = useState<CategoryId | "all">("all");
   const [version, setVersion] = useState<CardVersion>("v1");
   const [dialog, setDialog] = useState<{ id: NutritionistId; product: Product | null } | null>(null);
@@ -85,9 +89,14 @@ function Index() {
 
   const openFromProduct = (p: Product) => setDialog({ id: p.nutritionistId, product: p });
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("home-square", square);
+    return () => document.documentElement.classList.remove("home-square");
+  }, [square]);
+
   return (
     <CartProvider>
-    <div className="min-h-screen bg-background">
+    <div className={cn("min-h-screen bg-background", square && "home-square")}>
       <TopBar />
       <SiteHeader />
 
@@ -219,6 +228,16 @@ function TopBar() {
 
 function SiteHeader() {
   const { count, setOpen } = useCart();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const homeLink = (href: "/" | "/home-2", label: string) => (
+    <Link
+      to={href}
+      aria-current={pathname === href ? "page" : undefined}
+      className={cn("transition hover:text-ink", pathname === href ? "font-semibold text-ink" : "text-foreground/70")}
+    >
+      {label}
+    </Link>
+  );
   return (
     <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur-lg">
       <div className="mx-auto flex max-w-[1440px] items-center gap-4 px-4 py-3 md:gap-8 md:px-8">
@@ -261,8 +280,13 @@ function SiteHeader() {
           <IconBtn label="Menu" className="lg:hidden"><Menu /></IconBtn>
         </nav>
       </div>
-      <div className="hidden border-t lg:block">
-        <div className="mx-auto flex max-w-[1440px] items-center gap-8 px-8 py-2.5 text-sm font-medium text-foreground/80">
+      <div className="border-t">
+        <div className="mx-auto flex max-w-[1440px] items-center gap-6 px-4 py-2.5 text-sm font-medium md:px-8">
+          <nav className="flex items-center gap-4" aria-label="Homes">
+            {homeLink("/", "Home 1")}
+            {homeLink("/home-2", "Home 2")}
+          </nav>
+          <div className="hidden items-center gap-8 text-foreground/80 lg:flex">
           {CATEGORIES.map((c) => {
             const Icon = CAT_ICONS[c.id];
             return (
@@ -272,7 +296,8 @@ function SiteHeader() {
               </a>
             );
           })}
-          <span className="ml-auto flex items-center gap-6">
+          </div>
+          <span className="ml-auto hidden items-center gap-6 text-foreground/80 lg:flex">
             <a href="#nutritionists" className="hover:text-ink">Nutritionists</a>
             <a href="#vendors" className="hover:text-ink">Vendors</a>
             <a href="#deals" className="font-semibold text-primary">Today's deals</a>

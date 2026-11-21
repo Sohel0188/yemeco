@@ -263,6 +263,14 @@
   }
 }
 
+/* Home 2: the same page with every corner square. */
+.home-square,
+.home-square *,
+.home-square *::before,
+.home-square *::after {
+  border-radius: 0 !important;
+}
+
 @keyframes float-y {
   0%,
   100% {
