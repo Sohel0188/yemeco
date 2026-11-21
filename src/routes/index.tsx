@@ -45,13 +45,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NutriHaat — Farm-fresh marketplace, checked by nutritionists" },
+      { title: "Yemico — Farm-fresh marketplace, checked by nutritionists" },
       {
         name: "description",
         content:
           "Shop fruits, vegetables, biscuits, medicine and more from local farmers and vendors. Every product is rated by a certified nutritionist.",
       },
-      { property: "og:title", content: "NutriHaat — Farm-fresh marketplace" },
+      { property: "og:title", content: "Yemico — Farm-fresh marketplace" },
       {
         property: "og:description",
         content: "Multi-vendor grocery and pharmacy marketplace with nutritionist ratings on every product.",
@@ -210,7 +210,7 @@ function TopBar() {
         </p>
         <p className="hidden gap-6 md:flex">
           <span>Free delivery over ৳999</span>
-          <a href="#vendors" className="font-semibold underline-offset-4 hover:underline">Sell on NutriHaat</a>
+          <a href="#vendors" className="font-semibold underline-offset-4 hover:underline">Sell on Yemico</a>
         </p>
       </div>
     </div>
@@ -227,7 +227,7 @@ function SiteHeader() {
             <Leaf className="size-5" />
           </span>
           <span className="font-display text-2xl font-extrabold text-ink">
-            Nutri<span className="text-primary">Haat</span>
+            Yemi<span className="text-primary">co</span>
           </span>
         </a>
 
@@ -566,7 +566,7 @@ function SiteFooter() {
     <footer className="border-t bg-card">
       <div className="mx-auto grid max-w-[1440px] gap-10 px-4 py-14 md:grid-cols-[1.5fr_repeat(3,1fr)] md:px-8">
         <div>
-          <p className="font-display text-2xl font-extrabold text-ink">Nutri<span className="text-primary">Haat</span></p>
+          <p className="font-display text-2xl font-extrabold text-ink">Yemi<span className="text-primary">co</span></p>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
             A multi-vendor marketplace connecting Bangladeshi farmers, bakeries and pharmacies with families — with a nutritionist checking every shelf.
           </p>
@@ -582,7 +582,7 @@ function SiteFooter() {
           </div>
         ))}
       </div>
-      <div className="border-t py-5 text-center text-xs text-muted-foreground">© 2026 NutriHaat. All rights reserved.</div>
+      <div className="border-t py-5 text-center text-xs text-muted-foreground">© 2026 Yemico. All rights reserved.</div>
     </footer>
   );
 }

@@ -82,10 +82,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NutriHaat — Nutritionist-rated marketplace" },
+      { title: "Yemico — Nutritionist-rated marketplace" },
       { name: "description", content: "Multi-vendor marketplace for fresh food and medicine, rated by nutritionists." },
-      { name: "author", content: "NutriHaat" },
-      { property: "og:title", content: "NutriHaat" },
+      { name: "author", content: "Yemico" },
+      { property: "og:title", content: "Yemico" },
       { property: "og:description", content: "Multi-vendor marketplace for fresh food and medicine, rated by nutritionists." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
